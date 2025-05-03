@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { RecognitionResult } from './interfaces/SpeechRecognition';
-import { speechRecognitionFactory, SpeechVendor } from './services/SpeechRecognitionFactory';
-import { xunfeiConfig } from './config/xunfei';
+import { RecognitionResult } from '@interfaces/SpeechRecognition';
+import { speechRecognitionFactory, SpeechVendor } from '@services/SpeechRecognitionFactory';
+import { xunfeiConfig } from '@config/xunfei';
 
 export default function VoiceRecognition2() {
   const [resultText, setResultText] = useState('');
