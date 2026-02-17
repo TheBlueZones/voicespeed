@@ -2,49 +2,17 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { RecognitionResult } from '../interfaces/SpeechRecognition';
-import { speechRecognitionFactory, SpeechVendor } from '../services/SpeechRecognitionFactory';
-import { xunfeiConfig } from '../config/xunfei';
 
 export default function VoiceRecognition() {
   const [resultText, setResultText] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const [configError, setConfigError] = useState<string | null>(null);
-  const speechServiceRef = useRef(speechRecognitionFactory.createService(SpeechVendor.XUNFEI));
+  const speechServiceRef = useRef<{ startRealTimeRecognition: (...args: unknown[]) => Promise<void>; stopRealTimeRecognition: () => void; dispose: () => void } | null>(null);
 
-  // 初始化语音识别服务
+  // 初始化语音识别服务（待接入具体服务商）
   useEffect(() => {
-    const speechService = speechServiceRef.current;
-    const initSpeechService = async () => {
-      try {
-        // 使用配置文件中的设置
-        const config = xunfeiConfig;
-        
-        // 检查配置是否完整，只检查是否有值，不再检查是否等于占位符值
-        if (!config.appId || !config.apiKey || !config.apiSecret) {
-          setConfigError('请在配置文件中设置讯飞API凭证信息');
-          return;
-        }
-
-        const initialized = await speechService.initialize(config);
-        
-        setIsInitialized(initialized);
-        if (!initialized) {
-          console.error('语音识别服务初始化失败');
-          setConfigError('语音识别服务初始化失败');
-        }
-      } catch (error) {
-        console.error('初始化失败:', error);
-        setConfigError(error instanceof Error ? error.message : '初始化发生未知错误');
-      }
-    };
-    
-    initSpeechService();
-    
-    return () => {
-      // 组件卸载时释放资源
-      speechService.dispose();
-    };
+    setConfigError('尚未配置语音识别服务商');
   }, []);
 
   // 处理识别结果
@@ -108,11 +76,8 @@ export default function VoiceRecognition() {
           <p className="font-bold">配置错误</p>
           <p>{configError}</p>
           <p className="mt-2 text-sm">
-            请在配置文件中设置讯飞API凭证信息：
+            请配置语音识别服务商后重试
           </p>
-          <ul className="list-disc pl-5 mt-1">
-            <li>src/app/config/xunfei.ts</li>
-          </ul>
         </div>
       </div>
     );

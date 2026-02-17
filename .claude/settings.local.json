@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:den.dev)",
+      "WebFetch(domain:codestandup.com)",
+      "WebFetch(domain:www.geeky-gadgets.com)",
+      "WebFetch(domain:vibecoding.app)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:context7.com)",
+      "Bash(specify init:*)",
+      "Bash(python -m specify_cli init:*)",
+      "Bash(specify --help:*)",
+      "Bash(ls:*)",
+      "Bash(uv tool list:*)",
+      "Bash(uv tool run:*)",
+      "Bash(pip install:*)",
+      "Bash(python -c \"\nimport time\nfrom pynput.keyboard import Controller, Key\n\nkb = Controller\\(\\)\nprint\\(''5 秒后将模拟输入 hello，请切到 Cursor 终端的 Claude Code 输入框...''\\)\ntime.sleep\\(5\\)\n\n# 逐字符输入\nfor ch in ''hello'':\n    kb.press\\(ch\\)\n    kb.release\\(ch\\)\n    time.sleep\\(0.05\\)\nprint\\(''输入完成''\\)\n\")",
+      "Bash(python -c \"\nimport time\nfrom pynput.keyboard import Controller, Key\n\nkb = Controller\\(\\)\nprint\\(''5 seconds, switch to Claude Code now...''\\)\ntime.sleep\\(5\\)\n\nfor ch in ''hello'':\n    kb.press\\(ch\\)\n    kb.release\\(ch\\)\n    time.sleep\\(0.05\\)\nprint\\(''done''\\)\n\")"
+    ]
+  }
+}
