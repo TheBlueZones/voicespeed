@@ -42,3 +42,13 @@ next-env.d.ts
 
 # IDE
 .vscode/
+
+# logs
+server.log
+
+# misc generated
+nul
+
+# tool directories
+.playwright-mcp/
+.serena/
